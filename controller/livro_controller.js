@@ -95,8 +95,9 @@ function realizarRetiradaLivro(req, res) {
 
 function realizarDevolucaoLivro(req, res) {
   const id = req.params.id;
+  const clienteId = req.params.clienteId;
   try {
-    const livroDevolvido = Livro.realizarDevolucaoLivro(id);
+    const livroDevolvido = Livro.realizarDevolucaoLivro(id,clienteId);
     res.json(livroDevolvido);
   } catch (err) {
     res.status(err.numero).json(err);
