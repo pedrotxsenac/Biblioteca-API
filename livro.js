@@ -113,15 +113,17 @@ function realizarRetiradaLivro(idLivro, clienteId) {
     }
 }
 
-function realizarDevolucaoLivro(idLivro) {
-    const livro = buscarLivroPorId(idLivro);
+function realizarDevolucaoLivro(idLivro,idCLiente) {
+    const livro = buscarLivroPorId(idLivro);  
+    clienteDoLivro = Cliente.buscarPorIdCliente(idCLiente)
     if (livro.retirado) {
         livro.retirado = false;
-        livro.matriculaCliente = null;
+        livro.idCliente = null;
         livro.dataRetirada = null;
         livro.dataEntrega = null;
         const diasAtraso = calcularDiasAtraso(livro.dataEntrega);
         livro.diasAtraso = diasAtraso > 0 ? diasAtraso : 0;
+        clienteDoLivro.livrosRetirados -= 1;
         return livro;
     } else {
         throw {
