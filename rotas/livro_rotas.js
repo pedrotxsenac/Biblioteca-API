@@ -16,6 +16,6 @@ router.get('/nome/:nome', livroController.buscarLivrosPorNome);
 router.get('/disponiveis', livroController.buscarLivrosDisponiveis);
 ///////////////
 router.put('/:id/retirar/:clienteId', livroController.realizarRetiradaLivro);
-router.put('/:id/devolver', livroController.realizarDevolucaoLivro);
+router.put('/:id/devolver/:clienteId', livroController.realizarDevolucaoLivro);
 
 module.exports = router;
